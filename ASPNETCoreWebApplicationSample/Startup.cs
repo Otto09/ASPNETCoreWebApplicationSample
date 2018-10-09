@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using ASPNETCoreWebApplicationSample.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ASPNETCoreWebApplicationSample.Models;
 
 namespace ASPNETCoreWebApplicationSample
 {
@@ -41,6 +42,9 @@ namespace ASPNETCoreWebApplicationSample
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<ClientsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ClientsContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
